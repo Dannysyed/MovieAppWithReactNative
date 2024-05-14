@@ -11,7 +11,8 @@ const fetchMovies = async () => {
         Authorization: authToken,
       },
     });
-    return response.data.results;
+    let result = response.data.results;
+    return result;
   } catch (error) {
     console.error("Error fetching movies:", error);
     return [];
