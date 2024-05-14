@@ -1,10 +1,13 @@
 import { StyleSheet, Text, View } from "react-native";
 import React from "react";
+import { useRoute } from "@react-navigation/native";
 
 const MovieScreen = () => {
+  let route = useRoute();
+  let params = route.params.id;
   return (
     <View>
-      <Text>MovieScreen</Text>
+      <Text>{params}</Text>
     </View>
   );
 };

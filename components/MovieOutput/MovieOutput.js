@@ -6,28 +6,33 @@ import fetchMovies from "../FetchData";
 const MovieOutput = () => {
   let [movieData, setMovieData] = useState([]);
   let [PosterData, setPosterData] = useState([]);
+  let [genreData, setGenreData] = useState([]);
   const imageUrl = `https://image.tmdb.org/t/p/w500/${PosterData[1]}`;
 
   useEffect(() => {
     const fetchData = async () => {
       const data = await fetchMovies();
-      setMovieData(data);
-      const posters = data.slice(0, 3).map((movie) => movie.poster_path);
+      setMovieData(data.movies);
+      setGenreData(data.genres);
+      const posters = data.movies.slice(0, 3).map((movie) => movie.poster_path);
       setPosterData(posters);
     };
     fetchData();
   }, []);
-
+  const getMoviesByGenre = (genreId) => {
+    return movieData.filter((movie) => movie.genre_ids.includes(genreId));
+  };
+  console.log(genreData);
   return (
     <ScrollView>
       <View style={styles.container}>
         <Image source={{ uri: imageUrl }} style={styles.image} />
-        <Text>List of movies</Text>
-        <MovieList data={movieData} />
-        <Text>Animation</Text>
-        <MovieList data={movieData} />
-        <Text>Adventure</Text>
-        <MovieList data={movieData} />
+        {genreData.map((genre) => (
+          <View key={genre.id}>
+            <Text style={styles.genreTitle}>{genre.name}</Text>
+            <MovieList data={getMoviesByGenre(genre.id)} />
+          </View>
+        ))}
       </View>
     </ScrollView>
   );
