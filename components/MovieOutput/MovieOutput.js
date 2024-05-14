@@ -13,7 +13,6 @@ const MovieOutput = () => {
       const data = await fetchMovies();
       setMovieData(data);
       const posters = data.slice(0, 3).map((movie) => movie.poster_path);
-      console.log(posters);
       setPosterData(posters);
     };
     fetchData();

@@ -13,16 +13,35 @@ import SearchMovie from "./screens/SearchMovie";
 import MovieScreen from "./screens/MovieScreen";
 import DownloadScreen from "./screens/DownloadScreen";
 import ProfileScreen from "./screens/ProfileScreen";
+import { LinearGradient } from "expo-linear-gradient";
 
 const BottomTabs = createBottomTabNavigator();
 
 const Stack = createStackNavigator();
+const screenOptions = {
+  tabBarStyle: [
+    {
+      height: 70,
+      borderTopLeftRadius: 20,
+      borderTopRightRadius: 20,
+      overflow: "hidden",
+    },
+  ],
+  tabBarBackground: () => (
+    <LinearGradient
+      colors={["#4c669f", "#3b5998", "#192f6a"]}
+      style={{ flex: 1 }}
+      start={{ x: 0, y: 0 }}
+      end={{ x: 1, y: 0 }}
+    />
+  ),
+};
 
 function DrawerScreen() {
   return (
     <BottomTabs.Navigator
       initialRouteName="HomeScreen"
-      screenOptions={{ headerStyle: { backgroundColor: "white" } }}
+      screenOptions={screenOptions}
     >
       <BottomTabs.Screen
         name="HomeScreen"
