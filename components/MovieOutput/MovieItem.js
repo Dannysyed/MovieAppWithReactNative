@@ -22,7 +22,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     flexDirection: "row",
-    marginHorizontal: 10,
+    marginHorizontal: 12,
     elevation: 10,
   },
   image: {

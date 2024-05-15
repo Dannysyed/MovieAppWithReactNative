@@ -3,7 +3,7 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import { createDrawerNavigator } from "@react-navigation/drawer";
 import { StatusBar } from "expo-status-bar";
-import { StyleSheet, Text, View } from "react-native";
+import { Image, StyleSheet, Text, View } from "react-native";
 import { Light_color, Secondary_color } from "./components/Colors";
 import { Ionicons } from "@expo/vector-icons";
 
@@ -35,6 +35,38 @@ const screenOptions = {
       end={{ x: 1, y: 0 }}
     />
   ),
+  tabBarLabelStyle: {
+    fontSize: 14,
+    fontWeight: "bold",
+  },
+  tabBarActiveTintColor: "#fff",
+  tabBarInactiveTintColor: "rgba(255, 255, 255, 0.7)",
+  tabBarShowLabel: false,
+  tabBarIconStyle: {
+    marginBottom: 5,
+  },
+  tabBarBackground: () => (
+    <LinearGradient
+      colors={["#4c669f", "#3b5998", "#192f6a"]}
+      style={{ flex: 1 }}
+      start={{ x: 0, y: 0 }}
+      end={{ x: 1, y: 0 }}
+    />
+  ),
+  headerBackground: () => (
+    <LinearGradient
+      colors={["#4c669fd9", "#3b589898", "#192f6a"]}
+      style={{ flex: 1 }}
+      start={{ x: 0, y: 0 }}
+      end={{ x: 1, y: 0 }}
+    />
+  ),
+  headerLeft: () => (
+    <Image
+      source={require("./assets/Disney.png")}
+      style={{ width: 80, height: 40, marginLeft: 150 }}
+    />
+  ),
 };
 
 function DrawerScreen() {
@@ -47,6 +79,7 @@ function DrawerScreen() {
         name="HomeScreen"
         component={HomeScreen}
         options={{
+          headerTitleStyle: { display: "none" },
           tabBarIcon: ({ color, size }) => (
             <Ionicons name="home" color={color} size={size} />
           ),
