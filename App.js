@@ -53,6 +53,7 @@ const screenOptions = {
       end={{ x: 1, y: 0 }}
     />
   ),
+  // headerStyle:()=>(),
   headerBackground: () => (
     <LinearGradient
       colors={["#4c669fd9", "#3b589898", "#192f6a"]}
